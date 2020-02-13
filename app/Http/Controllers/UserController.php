@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return 'Mostrando el detalle del usuario ' . $id;
+        return view('users-show', ['id' => $id]);
     }
 
     public function create()
