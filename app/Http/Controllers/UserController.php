@@ -6,20 +6,49 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
-        return 'Usuarios';
+    public function index()
+    {
+        if (request()->has('empty')) {
+            $users = [];
+        } else {
+            $users = [
+                'Tommy',
+                'Jerry',
+                'Lucas',
+                'Alonso',
+                'Jenifer',
+                'Johnatan',
+                'Lee',
+                'Alguien',
+                '<script>alert("hola")</script>'
+
+            ];
+        }
+        $title =  "Listado de usuarios";
+        //dd(compact('title','users'));
+
+
+        // return view('users', [
+        //     'users' => $users,
+        //     'title' => 'Listado de usuarios'
+        //     ]);
+        // return view('users')->with('users', $users)
+        //                     ->with('title', $title);
+        return view('users', compact('title', 'users'));
     }
 
-    public function show($id){
-        return 'Mostrando el detalle del usuario '.$id;
+    public function show($id)
+    {
+        return 'Mostrando el detalle del usuario ' . $id;
     }
 
-    public function create(){
+    public function create()
+    {
         return 'Crear un Nuevo Ususario';
     }
 
-    public function edit($id){
-        return 'Edita el usuario '. $id;
+    public function edit($id)
+    {
+        return 'Edita el usuario ' . $id;
     }
-
 }
