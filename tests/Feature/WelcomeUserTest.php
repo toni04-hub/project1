@@ -22,8 +22,9 @@ class WelcomeUserTest extends TestCase
     public function test_it_welcomes_users_without_nickname(){
         $this->get('saludo/pepe')
             ->assertStatus(200)
-            ->assertSee("Bienvenido pepe, No tienes Apodo"
-            
+            ->assertSee("Bienvenido pepe, No tienes Apodo");
+
+
     }
 
 }

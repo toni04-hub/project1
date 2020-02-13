@@ -4,29 +4,17 @@ Route::get('/', function (){
     return 'Home';
 });
 
-Route::get('/usuarios', function(){
-    return 'Usuarios';
-});
+Route::get('/usuarios', 'UserController@index');
 
 // Route::get('/usuarios/detalles', function (){
 //     return 'Mostrando el detalle del usuario'.$_GET['id'];
 
 // });
 
-Route::get('/usuarios/nuevo', function (){
-    return 'Crear un Nuevo Ususario';
-});
+Route::get('/usuarios/nuevo','UserController@create');
 
-Route::get('/usuarios/{id}', function ($id){
-    return 'Mostrando el detalle del usuario '.$id;
+Route::get('/usuarios/{id}', 'UserController@show')->where('id', '[0-9]+');
 
-})->where('id', '[0-9]+');
+Route::get('/usuarios/{id}/edit', 'UserController@edit')->where('id', '[0-9]+');
 
-Route::get('/saludo/{name}/{nickname?}', function ($name, $nickname = null){
-    if($nickname) {
-        return "Bienvenido {$name}, tu apodo es {$nickname}";
-    }else{
-        return "Bienvenido {$name}, No tienes Apodo";
-    }
-});
-
+Route::get('/saludo/{name}/{nickname?}','WelcomeController');
