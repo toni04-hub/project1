@@ -1,6 +1,7 @@
 <?php
 
 use App\Article;
+use App\Http\Controllers\ArticlesController;
 
 Route::get('/', function (){
     return view('home');
@@ -25,6 +26,7 @@ Route::get('/pasteles', 'PastelController@index');
 
 Route::get('/pasteles/{id}', 'PastelController@show')->where('id', '[0-9 ]+');
 
-Route::get('articulos', function(){
-    return view('articulos.index',['articulos'=>Article::all()]);
-});
+Route::get('/articulos', 'ArticlesController@index')->name('todos_articulos');
+Route::get('/articulos/{id}', 'ArticlesController@show')->where('id', '[0-9 ]+')->name('detalle_articulo');
+Route::get('/articulos/crear', 'ArticlesController@crear')->name("articulo nuevo");
+Route::post('/articulos/store', 'ArticlesController@store');
