@@ -21,8 +21,33 @@ class ArticlesController extends Controller
         return view('articulos.crear');
     }
 
-    public function store(){
-        dd(request()->all());
-        return "insertando nuevo Articulo";
+     
+    public function store(Request $request){
+        //$data = request()->all();
+
+        // Article::create([
+        //     'autor' => $data['autor'],
+        //     'title'  => $data['title'],
+        //     'body'   => $data['body']
+        // ]);
+       
+        $validateData = $request->validate([
+            'autor' => 'required',
+            'title' => 'required | unique:articles',
+            'body'  => 'required'
+        ]);
+        
+
+       
+        $articulo = new Article;
+        $articulo->autor = $request->autor;
+        $articulo->title = $request->title;
+        $articulo->body = $request->body;
+        
+        $articulo->save();
+
+
+        //return redirect()->route('todos_articulos');
+        return redirect('/articulos');
     }
 }
