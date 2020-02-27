@@ -14,3 +14,10 @@
         @endforeach
         </ul>
     @endsection
+
+@section('sidebar')
+    @parent
+        <ul>
+            <li><a href={{route("articulo_nuevo")}}>Nuevo Articulo</a></li>
+        </ul>
+@endsection    

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller
 {
     public function index(){
+        
         $articulos = Article::all();
         return view('articulos.index', compact('articulos'));
     }
@@ -33,7 +34,7 @@ class ArticlesController extends Controller
        
         $validateData = $request->validate([
             'autor' => 'required',
-            'title' => 'required | unique:articles',
+            'title' => 'required|unique:articles|max:12',
             'body'  => 'required'
         ]);
         
@@ -49,5 +50,37 @@ class ArticlesController extends Controller
 
         //return redirect()->route('todos_articulos');
         return redirect('/articulos');
+    }
+
+    public function update($id){
+        $articulo = Article::find($id);
+        return view('articulos.update', ['articulo' => $articulo]);
+    }
+
+    public function store_update(Request $request, $id){
+       
+        $validateData = $request->validate([
+            'autor' => 'required',
+            'title' => 'required|unique:articles|max:12',
+            'body'  => 'required'
+        ]);
+        
+        $articulo = Article::find($id);
+        $articulo->autor = $request->autor;
+        $articulo->title = $request->title;
+        $articulo->body = $request->body;
+        
+        $articulo->save();
+
+
+        //return redirect()->route('todos_articulos');
+        return redirect('/articulos');
+
+    }
+
+
+    public function delete(){
+
+
     }
 }

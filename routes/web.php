@@ -28,5 +28,9 @@ Route::get('/pasteles/{id}', 'PastelController@show')->where('id', '[0-9 ]+');
 
 Route::get('/articulos', 'ArticlesController@index')->name('todos_articulos');
 Route::get('/articulos/{id}', 'ArticlesController@show')->where('id', '[0-9 ]+')->name('detalle_articulo');
-Route::get('/articulos/crear', 'ArticlesController@crear')->name("articulo nuevo");
+Route::get('/articulos/crear', 'ArticlesController@crear')->name("articulo_nuevo");
 Route::post('/articulos/store', 'ArticlesController@store');
+Route::get('/articulos/update/{id}', 'ArticlesController@update')->name('articulo_modificar');
+Route::post('/articulos/update/{id}', 'ArticlesController@store_update');
+Route::get('/articulos/delete/{id}', 'ArticlesController@delete')->name('articulo_eliminar');
+
