@@ -64,7 +64,6 @@ class ArticlesController extends Controller
             'title' => 'required|unique:articles|max:12',
             'body'  => 'required'
         ]);
-        
         $articulo = Article::find($id);
         $articulo->autor = $request->autor;
         $articulo->title = $request->title;
