@@ -33,3 +33,7 @@ Route::get('/articulos/update/{id}', 'ArticlesController@update')->name('articul
 Route::post('/articulos/update/{id}', 'ArticlesController@store_update');
 Route::get('/articulos/delete/{id}', 'ArticlesController@delete')->name('articulo_eliminar');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
