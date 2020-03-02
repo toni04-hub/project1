@@ -4,7 +4,7 @@ use App\Article;
 use App\Http\Controllers\ArticlesController;
 
 Route::get('/', function (){
-    return view('home');
+    return view('inicio');
 })->name('inicio');
 
 Route::get('/usuarios', 'UserController@index')->name('users');
@@ -13,7 +13,6 @@ Route::get('/usuarios', 'UserController@index')->name('users');
 //     return 'Mostrando el detalle del usuario'.$_GET['id'];
 
 // });
-
 Route::get('/usuarios/nuevo','UserController@create')->name('new_user');
 
 Route::get('/usuarios/{id}', 'UserController@show')->where('id', '[0-9]+')->name('detalle_user');
